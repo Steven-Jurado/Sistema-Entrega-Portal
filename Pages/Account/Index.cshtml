@@ -3,54 +3,66 @@
 @{
     Layout = "_Account";
 }
-<section class="ftco-section">
+<body class="bg-gradient-primary">
     <div class="container">
 
-        @if (Model.Message != null)
-        {
-
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        }
-
+        <!-- Outer Row -->
         <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-10">
-                <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(images/bg-1.jpg);">
-                    </div>
-                    <div class="login-wrap p-4 p-md-5">
-                        <div class="d-flex">
-                            <div class="w-100">
-                                <h3 class="mb-4">Sign In</h3>
-                            </div>
-                            <div class="w-100">
-                                <p class="social-media d-flex justify-content-end">
-                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                                </p>
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                   id="exampleInputEmail" aria-describedby="emailHelp"
+                                                   placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                   id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    Remember
+                                                    Me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </a>
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                    </form>
+                                    <div class="text-center">
+                                        <a class="small" href="Account/Register">Create an Account!</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <form class="signin-form" method="post">
-                            <div class="form-group mb-3">
-                                <label class="label" for="name">Username</label>
-                                <input type="text" name="Username" class="form-control" placeholder="Username" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="label" for="password">Password</label>
-                                <input type="password" name="Password" class="form-control" placeholder="Password" required>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
-</section>
+</body>
