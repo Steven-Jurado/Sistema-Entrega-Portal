@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using ups.delivey.portal.Models;
 
 namespace ups.delivey.portal.Pages
 {
@@ -18,18 +22,29 @@ namespace ups.delivey.portal.Pages
             HttpContext.Session.Remove("Manager");
         }
 
-        public IActionResult OnPost() 
+        public async Task<IActionResult>  OnPost() 
         {
-            if (Request.Form["UserName"].Equals("admin") && Request.Form["Password"].Equals("123"))
+            User _User = new() { UserName = Request.Form["UserName"], Password = Request.Form["Password"] };
+            _User.Email = "admin@asd.com";
+            var Responsive = await new HttpClient().PostAsJsonAsync("https://localhost:44353/Account", _User);
+
+            var Content = JsonConvert.DeserializeObject( await Responsive.Content.ReadAsStringAsync());
+
+            if (Responsive.StatusCode == System.Net.HttpStatusCode.OK && Content != null)
             {
-                HttpContext.Session.SetString("Manager","True");
                 return Redirect("/Home/Index");
             }
             else
             {
-                Message = "Wrong, Please verify your email or password";
-                return Page();
+                if (Responsive.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    Message = "Wrong, Please verify your email or password";
+                    return Page();
+                }
             }
+
+            return Page();
+
         }
     }
 }

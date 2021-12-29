@@ -2,9 +2,20 @@
 @model ups.delivey.portal.Pages.IndexModel
 @{
     Layout = "_Account";
+    string Hola = Model.Message;
 }
 <body class="bg-gradient-primary">
     <div class="container">
+
+        @if (Model.Message != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                @Model.Message
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -21,15 +32,15 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" class="form-control form-control-user"
                                                    id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address...">
+                                                   placeholder="Enter Email Address..." name="UserName">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword" placeholder="Password">
+                                                   id="exampleInputPassword" placeholder="Password" name="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -40,9 +51,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login" />
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google

@@ -59,7 +59,7 @@ namespace ups.delivey.portal
                 app.UseHsts();
             }
 
-            app.UseAccountMilddware();
+            //app.UseAccountMilddware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
