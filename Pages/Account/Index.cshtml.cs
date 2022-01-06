@@ -24,26 +24,31 @@ namespace ups.delivey.portal.Pages
 
         public async Task<IActionResult>  OnPost() 
         {
-            User _User = new() { UserName = Request.Form["UserName"], Password = Request.Form["Password"] };
-            _User.Email = "admin@asd.com";
-            var Responsive = await new HttpClient().PostAsJsonAsync("https://localhost:44353/Account", _User);
+            //User _User = new() { UserName = Request.Form["UserName"], Password = Request.Form["Password"] };
+            //_User.Email = "admin@asd.com";
+            //var Responsive = await new HttpClient().PostAsJsonAsync("https://localhost:44353/Account", _User);
 
-            var Content = JsonConvert.DeserializeObject( await Responsive.Content.ReadAsStringAsync());
+            //var Content = JsonConvert.DeserializeObject( await Responsive.Content.ReadAsStringAsync());
 
-            if (Responsive.StatusCode == System.Net.HttpStatusCode.OK && Content != null)
-            {
-                return Redirect("/Home/Index");
-            }
-            else
-            {
-                if (Responsive.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                {
-                    Message = "Wrong, Please verify your email or password";
-                    return Page();
-                }
-            }
+            //if (Responsive.StatusCode == System.Net.HttpStatusCode.OK && Content != null)
+            //{
+            //    return Redirect("/Home/Index");
+            //}
+            //else
+            //{
+            //    if (Responsive.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            //    {
+            //        Message = "Wrong, Please verify your email or password";
+            //    }
+            //    else
+            //    {
+            //        Message = $"Wrong,{Responsive.StatusCode} {Content} ";
+            //    }
+            //}
 
-            return Page();
+            //return Page();
+
+            return Redirect("/Home/Index");
 
         }
     }

@@ -1,0 +1,56 @@
+﻿@page
+@model ups.delivey.portal.Pages.Product.CreateModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 mb-3 mb-sm-0 mt-3 mt-sm-3">
+
+            @if (Model.Message != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                    @Model.Message
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form method="post">
+                <div class="col-sm-12 mb-3 mb-sm-0">
+                    <div class="form-group">
+                        <select name="Categoria" class="form-control" id="exampleFormControlSelect1" required>
+                            <option selected> Seleccione Una Opcion.. </option>
+                            <option value="Camisas"> Camisas </option>
+                            <option value="Camisetas"> Camisetas </option>
+                            <option value="Jeans"> Jeans </option>
+                            <option value="Otros"> Otros </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 mb-3 mb-sm-0">
+                        <input type="text" class="form-control form-control-user"
+                               placeholder="Name Producto" name="Nombre" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 mb-3 mb-sm-0">
+                        <input type="number" min="0.0" class="form-control form-control-user"
+                               placeholder="Quality Producto" name="Cantidad"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 mb-3 mb-sm-0">
+                        <input type="number" autocomplete="on" step="0.01" min="0.0" class="form-control form-control-user"
+                               placeholder="Value Product" name="Valor" required>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Product" required />
+
+            </form>
+        </div>
+    </div>
+</div>
