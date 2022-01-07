@@ -2,3 +2,58 @@
 @model ups.delivey.portal.Pages.Buy.IndexModel
 @{
 }
+
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <td class="font-weight-bold"> Cliente </td>
+            <td class="font-weight-bold"> Identificacion </td>
+            <td class="font-weight-bold"> Correo </td>
+            <td class="font-weight-bold"> Producto </td>
+            <td class="font-weight-bold"> Cantidad </td>
+            <td class="font-weight-bold"> Estado </td>
+        </tr>
+        @foreach (var Buy in Model.ListBuys)
+        {
+
+            @if (Buy.Estado.Equals("Recibido"))
+            {
+                <tr class="table-warning">
+                    <td>@Buy.NombreCliente</td>
+                    <td>@Buy.IdentificacionCliente</td>
+                    <td>@Buy.CorreoCliente</td>
+                    <td>@Buy.NombreProducto</td>
+                    <td>@Buy.Cantidad</td>
+                    <td>@Buy.Estado</td>
+                </tr>
+            }
+            else
+            {
+                if (Buy.Estado.Equals("Empaquetado"))
+                {
+                    <tr class="table-info">
+                        <td>@Buy.NombreCliente</td>
+                        <td>@Buy.IdentificacionCliente</td>
+                        <td>@Buy.CorreoCliente</td>
+                        <td>@Buy.NombreProducto</td>
+                        <td>@Buy.Cantidad</td>
+                        <td>@Buy.Estado</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="table-success">
+                        <td>@Buy.NombreCliente</td>
+                        <td>@Buy.IdentificacionCliente</td>
+                        <td>@Buy.CorreoCliente</td>
+                        <td>@Buy.NombreProducto</td>
+                        <td>@Buy.Cantidad</td>
+                        <td>@Buy.Estado</td>
+                    </tr>
+                }
+            }
+
+        }
+    </table>
+</div>

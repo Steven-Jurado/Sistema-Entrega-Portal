@@ -3,13 +3,69 @@
 @{
 }
 
-<div>
-    <table>
+<div class="table-responsive">
+    <table class="table table-hover">
         <tr>
-            <td>prueba</td>
-            <td>prueba</td>
-            <td>prueba</td>
-            <td>prueba</td>
+            <td class="font-weight-bold"> Cliente </td>
+            <td class="font-weight-bold"> Identificacion </td>
+            <td class="font-weight-bold"> Correo </td>
+            <td class="font-weight-bold"> Producto </td>
+            <td class="font-weight-bold"> Cantidad </td>
+            <td class="font-weight-bold"> Estado </td>
+            <td class="font-weight-bold"> &nbsp; </td>
         </tr>
+        @foreach (var Buy in Model.ListBuys)
+        {
+
+            @if (Buy.Estado.Equals("Recibido"))
+            {
+                <tr class="table-danger">
+                    <td>@Buy.NombreCliente</td>
+                    <td>@Buy.IdentificacionCliente</td>
+                    <td>@Buy.CorreoCliente</td>
+                    <td>@Buy.NombreProducto</td>
+                    <td>@Buy.Cantidad</td>
+                    <td>@Buy.Estado</td>
+                    <td class="d-flex justify-content-around">
+                        <a  class="btn btn-outline-danger"> <i class="fas fa-fw fa-trash-alt"></i>Eliminar</a>
+                        <a asp-route-id="@Buy.Id" asp-page="/Buy/Edit" class="btn btn-outline-primary"> <i class="fas fa-fw fa-edit"></i>Editar</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                if (Buy.Estado.Equals("Empaquetado"))
+                {
+                    <tr class="table-warning">
+                        <td>@Buy.NombreCliente</td>
+                        <td>@Buy.IdentificacionCliente</td>
+                        <td>@Buy.CorreoCliente</td>
+                        <td>@Buy.NombreProducto</td>
+                        <td>@Buy.Cantidad</td>
+                        <td>@Buy.Estado</td>
+                        <td class="d-flex justify-content-around">
+                            <a class="btn btn-outline-danger"> <i class="fas fa-fw fa-trash-alt"></i>Eliminar</a>
+                            <a asp-route-id="@Buy.Id" asp-page="/Buy/Edit" class="btn btn-outline-primary"> <i class="fas fa-fw fa-edit"></i>Editar</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="table-success">
+                        <td>@Buy.NombreCliente</td>
+                        <td>@Buy.IdentificacionCliente</td>
+                        <td>@Buy.CorreoCliente</td>
+                        <td>@Buy.NombreProducto</td>
+                        <td>@Buy.Cantidad</td>
+                        <td>@Buy.Estado</td>
+                        <td class="d-flex justify-content-around">
+                            <a class="btn btn-outline-danger"> <i class="fas fa-fw fa-trash-alt"></i>Eliminar</a>
+                            <a asp-route-id="@Buy.Id" asp-page="/Buy/Edit" class="btn btn-outline-primary"> <i class="fas fa-fw fa-edit"></i>Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        }
     </table>
 </div>

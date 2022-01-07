@@ -1,4 +1,4 @@
-namespace ups.delivey.portal.Pages.Product
+namespace ups.delivey.portal.Pages.Buy
 {
     using System;
     using System.Collections.Generic;
@@ -14,9 +14,11 @@ namespace ups.delivey.portal.Pages.Product
 
     public class CreateModel : PageModel
     {
-
         [TempData]
         public string Message { get; set; }
+
+        [BindProperty]
+        public Buy Buy { get; set; }
 
         public void OnGet()
         {
@@ -24,20 +26,12 @@ namespace ups.delivey.portal.Pages.Product
 
         public async Task<IActionResult> OnPost()
         {
-            Product _Product = new() { 
-                Nombre = Request.Form["Nombre"], 
-                Cantidad = Convert.ToInt32(Request.Form["Cantidad"]), 
-                Categoria = Request.Form["Categoria"],
-                Valor = Convert.ToDecimal(Request.Form["Valor"])
-            };
-
-            var Responsive = await new HttpClient().PostAsJsonAsync("http://php-api-entrega.test/insertarProductos.php", _Product);
+            var Responsive = await new HttpClient().PostAsJsonAsync("http://php-api-entrega.test/insertarCompras.php", Buy);
 
             if (Responsive.StatusCode == HttpStatusCode.OK)
             {
                 Message = "Success";
             }
-
 
             return Page();
         }
