@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -26,18 +28,25 @@ namespace ups.delivey.portal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            
             services.AddSession( options => {
-                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+                        
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(option => { option.AccessDeniedPath = new  PathString("/Account/AccessDenied"); });
+
+          
             services.AddRazorPages();
 
-            services.AddMvc().AddRazorPagesOptions(options => {
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
 
                 options.Conventions.AddPageRoute("/Account/Index", "");
-            
             });
 
 
@@ -59,15 +68,16 @@ namespace ups.delivey.portal
                 app.UseHsts();
             }
 
-            //app.UseAccountMilddware();
+           // app.UseAccountMilddware();
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {

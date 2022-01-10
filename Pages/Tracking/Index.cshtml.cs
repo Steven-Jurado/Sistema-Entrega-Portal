@@ -5,12 +5,14 @@ namespace ups.delivey.portal.Pages.Tracking
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ups.delivey.portal.Models;
 
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         public IEnumerable<Buy> ListBuys { get; set; }

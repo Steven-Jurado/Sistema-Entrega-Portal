@@ -7,12 +7,14 @@ namespace ups.delivey.portal.Pages.Product
     using System.Net.Http;
     using System.Net.Http.Json;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ups.delivey.portal.Models;
 
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
 

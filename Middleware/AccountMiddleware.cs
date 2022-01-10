@@ -20,7 +20,55 @@
         {
             var path = httpContext.Request.Path;
 
-            if (path.HasValue && path.Value.StartsWith("/Home/Index"))
+            if (path.HasValue && path.Value.StartsWith("/Home/Index") )
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if (path.HasValue && path.Value.StartsWith("/Buy/Index")  )
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if (path.HasValue && path.Value.StartsWith("/Buy/Create"))
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if (path.HasValue && path.Value.StartsWith("/Buy/Edit"))
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if (path.HasValue && path.Value.StartsWith("/Product/Index") )
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if (path.HasValue && path.Value.StartsWith("/Product/Create"))
+            {
+                if (httpContext.Session.GetString("Manager") == null)
+                {
+                    httpContext.Response.Redirect("/");
+                }
+            }
+
+            if ( path.HasValue && path.Value.StartsWith("/Tracking/Index"))
             {
                 if (httpContext.Session.GetString("Manager") == null)
                 {

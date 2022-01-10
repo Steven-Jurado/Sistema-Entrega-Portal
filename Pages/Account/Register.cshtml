@@ -8,12 +8,25 @@
     <div class="container">
         @if (Model.Message != null)
         {
-            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                @Model.Message
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            if (Model.Message.Equals("Error"))
+            {
+                <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                    @Model.Message
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                    @Model.Message
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
         }
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -27,23 +40,29 @@
                             </div>
                             <form class="user" method="post">
                                 <div class="form-group row">
-                                    <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                               placeholder="Identity" name="Cedula" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                               placeholder="First Name" name="UserName" required>
+                                               placeholder="First Name" name="Nombre" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                           placeholder="Email Address" name="Email" required>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-3 mb-sm-0">
+                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                               placeholder="Email Address" name="Correo" required>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Password" name="Password" required>
+                                               id="exampleInputPassword" placeholder="Password" name="Contrasena" required>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                               id="exampleRepeatPassword" placeholder="Repeat Password" name="PasswordRepeat" required>
+                                               id="exampleRepeatPassword" placeholder="Repeat Password" name="Contrasena" required>
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account" required />

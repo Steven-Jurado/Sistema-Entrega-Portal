@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ups.delivey.portal.Models;
 
 namespace ups.delivey.portal.Pages.Account
@@ -16,6 +17,8 @@ namespace ups.delivey.portal.Pages.Account
         [TempData]
         public string Message { get; set; }
 
+        [BindProperty]
+        public User User { get; set; }
         public void OnGet()
         {
 
@@ -23,27 +26,22 @@ namespace ups.delivey.portal.Pages.Account
 
         public async Task<IActionResult> OnPost()
         {
-
-            if (Request.Form["Password"].Equals(Request.Form["PasswordRepeat"]))
+            try
             {
-                User _User = new() { UserName = Request.Form["UserName"], Password = Request.Form["Password"], Email = Request.Form["Email"] };
+                var Responsive = await new HttpClient().PostAsJsonAsync("http://php-api-entrega.test/insertarUsuario.php", User);
 
-                var Responsive = await new HttpClient().PostAsJsonAsync("https://localhost:44353/Register/Account", _User);
+                var ContentResponse = JsonConvert.DeserializeObject(await Responsive.Content.ReadAsStringAsync());
 
-                var Content = JsonConvert.DeserializeObject(await Responsive.Content.ReadAsStringAsync());
+                Message = "Succes, Account";
 
-                if (Responsive.StatusCode == System.Net.HttpStatusCode.Created)
-                {
-                    Message = "Successful, Account created";
-                    return Redirect("/Account/Index");
-                }
+                return Redirect("/Account/Index");
             }
-            else
+            catch (Exception)
             {
-                Message = "Verify, That your password is the same";
+                Message = "Error";
+                return Page();
             }
-
-            return Page();
+            
 
         }
     }

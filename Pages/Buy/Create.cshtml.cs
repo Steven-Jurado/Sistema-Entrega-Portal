@@ -7,11 +7,13 @@ namespace ups.delivey.portal.Pages.Buy
     using System.Net.Http;
     using System.Net.Http.Json;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Newtonsoft.Json;
     using ups.delivey.portal.Models;
 
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         [TempData]
